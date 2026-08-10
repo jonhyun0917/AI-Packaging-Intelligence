@@ -384,6 +384,21 @@ PAGES = ["홈", "분석", "혼합 포장", "지표", "신뢰도", "프로젝트"
 if "page" not in st.session_state:
     st.session_state["page"] = "홈"
 
+
+def go_to_analysis() -> None:
+    """Navigate safely before the sidebar radio is recreated."""
+    st.session_state["analysis_stage"] = 1
+    st.session_state.pop("analysis_image_bytes", None)
+    st.session_state["page"] = "분석"
+
+
+def go_to_home() -> None:
+    """Navigate safely before the sidebar radio is recreated."""
+    st.session_state["analysis_stage"] = 1
+    st.session_state.pop("analysis_image_bytes", None)
+    st.session_state["page"] = "홈"
+
+
 with st.sidebar:
     if LOGO_PATH.exists():
         st.image(str(LOGO_PATH), width=138)
@@ -445,11 +460,12 @@ if page == "홈":
 
     cta_left, cta_mid, cta_right = st.columns([1, 2.15, 1])
     with cta_mid:
-        if st.button("포장 분석 시작하기", type="primary", use_container_width=True):
-            st.session_state["analysis_stage"] = 1
-            st.session_state.pop("analysis_image_bytes", None)
-            st.session_state["page"] = "분석"
-            st.rerun()
+        st.button(
+            "포장 분석 시작하기",
+            type="primary",
+            use_container_width=True,
+            on_click=go_to_analysis,
+        )
 
     st.markdown("""<div class="launch-trust">결과는 정답을 대신하지 않습니다. <b>직접 입력한 값과 추정한 값을 구분</b>해 보여주고, 추가 확인이 필요한 조건도 함께 안내합니다.</div>
     <div class="app-flow">
@@ -619,9 +635,11 @@ else:
             st.session_state["flow_dimensions_confirmed"] = dimensions_confirmed
             st.session_state["analysis_stage"] = 2
             st.rerun()
-        if st.button("홈으로 돌아가기", use_container_width=True):
-            st.session_state["page"] = "홈"
-            st.rerun()
+        st.button(
+            "홈으로 돌아가기",
+            use_container_width=True,
+            on_click=go_to_home,
+        )
         st.stop()
 
     if stage == 2:
