@@ -377,6 +377,311 @@ div[data-testid="stFormSubmitButton"] > button:hover {
     .result-app-head {grid-template-columns:1fr;}
 }
 
+
+/* V9.8 · clean responsive product UI */
+.stApp {background:#F8FAF9;}
+.block-container {max-width:1080px;padding-top:1.2rem;}
+
+.v98-home {max-width:820px;margin:0 auto;padding:8vh 0 1rem;text-align:center;}
+.v98-brand {display:inline-flex;align-items:center;gap:9px;margin-bottom:1.15rem;color:#43544A;font-size:.8rem;font-weight:780;}
+.v98-brand-mark {display:inline-flex;width:34px;height:34px;align-items:center;justify-content:center;border-radius:11px;background:var(--forest);color:#fff;font-size:.7rem;font-weight:900;box-shadow:0 8px 22px rgba(31,90,66,.16);}
+.v98-home h1 {margin:0 auto .95rem;max-width:780px;font-size:clamp(2.55rem,5.7vw,4.2rem);line-height:1.04;letter-spacing:-.075em;font-weight:880;}
+.v98-home .lead {max-width:650px;margin:0 auto;color:#5C6B62;font-size:1rem;line-height:1.72;word-break:keep-all;}
+.v98-home .meta {display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin:1.05rem 0 0;}
+.v98-home .meta span {font-size:.72rem;font-weight:700;color:#637169;background:#EFF4F1;border:1px solid #DDE6E0;border-radius:999px;padding:6px 9px;}
+.v98-cta-wrap {max-width:420px;margin:.8rem auto 0;}
+.v98-note {max-width:590px;margin:.8rem auto 0;color:#7A8780;font-size:.73rem;line-height:1.55;text-align:center;}
+.v98-steps {max-width:760px;margin:2.2rem auto 0;display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
+.v98-step {background:#FFF;border:1px solid var(--line);border-radius:14px;padding:14px 15px;text-align:left;}
+.v98-step .num {display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:8px;background:var(--forest-soft);color:var(--forest);font-size:.65rem;font-weight:850;margin-bottom:9px;}
+.v98-step b {display:block;font-size:.87rem;color:var(--ink);margin-bottom:4px;}
+.v98-step span {display:block;color:#78857D;font-size:.72rem;line-height:1.48;}
+.v98-detail {max-width:760px;margin:1rem auto 0;}
+
+/* analysis form / mobile tap targets */
+[data-testid="stNumberInput"] input {min-height:46px;border-radius:10px;}
+[data-testid="stCheckbox"] label {padding:.15rem 0;}
+[data-testid="stCameraInput"], [data-testid="stFileUploader"] {border-radius:16px;}
+.flow-shell {max-width:720px;}
+.flow-top {margin-top:.15rem;}
+.flow-card {box-shadow:0 8px 28px rgba(28,62,45,.035);}
+.flow-title {font-size:clamp(1.8rem,4vw,2.35rem);}
+
+/* result hierarchy */
+.v98-summary {background:#FFF;border:1px solid var(--line);border-radius:16px;padding:18px 20px;margin:.5rem 0 1rem;}
+.v98-summary h3 {margin:0 0 7px;font-size:1rem;}
+.v98-summary p {margin:0;color:#5D6B63;font-size:.86rem;line-height:1.7;}
+.v98-confidence-grid {display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin:.75rem 0;}
+.v98-confidence-item {background:#F5F7F6;border:1px solid var(--line);border-radius:12px;padding:12px 13px;}
+.v98-confidence-item small {display:block;color:#7A8780;font-size:.68rem;margin-bottom:4px;}
+.v98-confidence-item strong {font-size:1rem;color:var(--ink);}
+.stTabs [data-baseweb="tab-list"] {position:relative;}
+
+@media (max-width:640px) {
+    .block-container {padding-top:.55rem;padding-left:.85rem;padding-right:.85rem;padding-bottom:2.2rem;}
+    .v98-home {padding:4.2vh 0 .4rem;text-align:left;}
+    .v98-brand {margin-bottom:.95rem;}
+    .v98-home h1 {font-size:2.45rem;line-height:1.03;margin-bottom:.8rem;}
+    .v98-home .lead {font-size:.9rem;line-height:1.62;}
+    .v98-home .meta {justify-content:flex-start;margin-top:.85rem;gap:6px;}
+    .v98-home .meta span {font-size:.66rem;padding:5px 8px;}
+    .v98-cta-wrap {max-width:none;margin-top:.75rem;}
+    .v98-note {text-align:left;margin-top:.65rem;font-size:.69rem;}
+    .v98-steps {grid-template-columns:1fr;margin-top:1.55rem;gap:7px;}
+    .v98-step {display:grid;grid-template-columns:32px 1fr;padding:12px 13px;align-items:start;column-gap:8px;}
+    .v98-step .num {grid-row:1 / span 2;margin:0;}
+    .v98-step b {margin:1px 0 2px;}
+    .v98-step span {grid-column:2;}
+    .v98-detail {margin-top:.75rem;}
+    .flow-title {font-size:1.72rem;line-height:1.16;}
+    .flow-copy {font-size:.84rem;}
+    .flow-card {padding:15px;border-radius:14px;}
+    .result-strip {grid-template-columns:1fr 1fr;}
+    .result-card {padding:12px;}
+    .result-card small {font-size:.65rem;}
+    .result-card strong {font-size:1.15rem;}
+    .stTabs [data-baseweb="tab-list"] {gap:2px;}
+    .stTabs [data-baseweb="tab"] {font-size:.74rem;padding:0 9px;}
+    .footer-brand {display:none;}
+}
+
+
+/* V9.9 · mobile-app first / desktop service layout */
+.v99-hero {
+    max-width:1000px;
+    margin:0 auto;
+    padding:6.4vh 0 1rem;
+    display:grid;
+    grid-template-columns:minmax(0,1.05fr) minmax(320px,.95fr);
+    gap:54px;
+    align-items:center;
+}
+.v99-copy {min-width:0;}
+.v99-brand {
+    display:inline-flex;
+    align-items:center;
+    gap:9px;
+    margin-bottom:1.35rem;
+    color:#405047;
+    font-size:.8rem;
+    font-weight:800;
+}
+.v99-mark {
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    width:34px;
+    height:34px;
+    border-radius:11px;
+    background:var(--forest);
+    color:#FFF;
+    font-size:.69rem;
+    font-weight:900;
+    box-shadow:0 8px 22px rgba(31,90,66,.15);
+}
+.v99-copy h1 {
+    margin:0 0 1rem;
+    max-width:610px;
+    font-size:clamp(2.75rem,5vw,4.2rem);
+    line-height:1.03;
+    letter-spacing:-.072em;
+    font-weight:880;
+}
+.v99-lead {
+    max-width:590px;
+    color:#5B6A61;
+    font-size:1rem;
+    line-height:1.75;
+    word-break:keep-all;
+}
+.v99-meta {
+    margin-top:1rem;
+    color:#718078;
+    font-size:.76rem;
+    font-weight:700;
+}
+.v99-preview {
+    background:#173E2E;
+    color:#FFF;
+    border-radius:24px;
+    padding:24px;
+    box-shadow:0 24px 58px rgba(23,62,46,.13);
+}
+.v99-preview-top {
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    margin-bottom:18px;
+}
+.v99-preview-title {font-size:.9rem;font-weight:800;color:#FFF;}
+.v99-preview-badge {
+    padding:5px 8px;
+    border-radius:999px;
+    background:rgba(255,255,255,.08);
+    color:#BCD0C5;
+    font-size:.62rem;
+    font-weight:800;
+    letter-spacing:.04em;
+}
+.v99-preview-photo {
+    height:126px;
+    border-radius:16px;
+    border:1px dashed rgba(255,255,255,.2);
+    background:linear-gradient(145deg,rgba(255,255,255,.08),rgba(255,255,255,.035));
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#BFD1C7;
+    font-size:.77rem;
+    margin-bottom:12px;
+}
+.v99-preview-grid {
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:8px;
+}
+.v99-preview-item {
+    border:1px solid rgba(255,255,255,.1);
+    background:rgba(255,255,255,.055);
+    border-radius:13px;
+    padding:12px;
+}
+.v99-preview-item small {
+    display:block;
+    color:#AEC5B9;
+    font-size:.62rem;
+    margin-bottom:5px;
+}
+.v99-preview-item strong {
+    display:block;
+    color:#FFF;
+    font-size:.88rem;
+}
+.st-key-home_start_v99 {
+    max-width:360px;
+    margin:0 auto;
+}
+.st-key-home_start_v99 button {
+    width:100%!important;
+    min-height:54px!important;
+}
+.v99-mini-flow {
+    max-width:620px;
+    margin:1rem auto 0;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:8px;
+    color:#738078;
+    font-size:.72rem;
+    font-weight:700;
+    white-space:nowrap;
+}
+.v99-mini-flow .arrow {color:#A5B0AA;font-weight:500;}
+.v99-home-detail {
+    max-width:760px;
+    margin:2rem auto 0;
+    padding-top:1.25rem;
+    border-top:1px solid var(--line);
+}
+.v99-result-note {
+    margin:.8rem 0 1rem;
+    padding:12px 14px;
+    border-radius:12px;
+    background:#F0F5F2;
+    border:1px solid #DDE7E1;
+    color:#617168;
+    font-size:.76rem;
+    line-height:1.55;
+}
+.v99-result-note b {color:var(--forest);}
+
+@media (max-width:900px) {
+    .v99-hero {
+        grid-template-columns:1fr;
+        max-width:760px;
+        gap:22px;
+        padding:3.4vh 0 .8rem;
+    }
+    .v99-preview {display:none;}
+}
+
+@media (max-width:640px) {
+    .block-container {
+        padding-top:.48rem;
+        padding-left:.9rem;
+        padding-right:.9rem;
+        padding-bottom:2rem;
+    }
+    .v99-hero {
+        display:block;
+        padding:1.8vh 0 .35rem;
+    }
+    .v99-brand {
+        margin-bottom:1rem;
+        font-size:.78rem;
+    }
+    .v99-mark {
+        width:32px;
+        height:32px;
+        border-radius:10px;
+    }
+    .v99-copy h1 {
+        font-size:2.12rem;
+        line-height:1.08;
+        margin-bottom:.72rem;
+        max-width:420px;
+    }
+    .v99-lead {
+        font-size:.91rem;
+        line-height:1.62;
+        max-width:440px;
+    }
+    .v99-meta {
+        margin-top:.72rem;
+        font-size:.72rem;
+    }
+    .st-key-home_start_v99 {
+        max-width:none;
+        margin-top:.72rem;
+    }
+    .st-key-home_start_v99 button {
+        min-height:55px!important;
+        border-radius:14px!important;
+        font-size:.96rem!important;
+    }
+    .v99-mini-flow {
+        margin-top:.85rem;
+        max-width:none;
+        justify-content:flex-start;
+        gap:6px;
+        font-size:.68rem;
+        overflow-x:auto;
+        scrollbar-width:none;
+    }
+    .v99-mini-flow::-webkit-scrollbar {display:none;}
+    .v99-home-detail {
+        margin-top:1.3rem;
+        padding-top:1rem;
+    }
+    .flow-title {
+        font-size:1.65rem;
+        line-height:1.18;
+    }
+    .flow-copy {
+        font-size:.84rem;
+        line-height:1.58;
+    }
+    .photo-guide {
+        grid-template-columns:1fr 1fr 1fr;
+    }
+    [data-testid="stNumberInput"] input {
+        min-height:49px;
+        font-size:1rem;
+    }
+}
+
 </style>
 """, unsafe_allow_html=True)
 
@@ -402,13 +707,13 @@ def go_to_home() -> None:
 with st.sidebar:
     if LOGO_PATH.exists():
         st.image(str(LOGO_PATH), width=138)
-    st.markdown("<div class='sidebar-brand'><div class='name'>AI Packaging Intelligence</div><div class='copy'>포장 상태를 측정하고 더 적합한 박스 후보를 비교하는 의사결정 지원 도구</div></div>", unsafe_allow_html=True)
+    st.markdown("<div class='sidebar-brand'><div class='name'>AI Packaging Intelligence</div><div class='copy'>사진과 치수로 포장 상태를 확인하고 박스 후보를 비교합니다.</div></div>", unsafe_allow_html=True)
     st.markdown("### 메뉴")
     page = st.radio("메뉴", PAGES, key="page", label_visibility="collapsed")
     presentation_mode = st.toggle("발표 모드", value=False, help="분석 화면에서 핵심 지표만 간단히 보여줍니다.") if page == "분석" else False
     st.divider()
     st.caption("Prototype · Decision Support")
-    st.markdown("<span class='version-pill'>Better Life For Us · V9.7</span>", unsafe_allow_html=True)
+    st.markdown("<span class='version-pill'>Better Life For Us · V9.9</span>", unsafe_allow_html=True)
 
 
 def section_head(eyebrow: str, title: str, copy: str = "") -> None:
@@ -450,54 +755,46 @@ def input_image() -> Image.Image | None:
     return Image.open(uploaded).convert("RGB") if uploaded else None
 
 if page == "홈":
-    st.markdown("""<div class="launch-wrap">
-        <div class="launch-logo"><span class="mark">AI</span><span>AI 포장 분석 · Better Life For Us</span></div>
-        <div class="launch-kicker">AI PACKAGING GUIDE</div>
-        <h1>어떤 박스가 맞을지,<br>바로 확인해보세요.</h1>
-        <div class="lead">사진을 찍고 박스 안쪽 치수를 입력하면 현재 포장의 빈 공간을 분석하고, 더 알맞을 수 있는 박스 후보를 비교해드립니다.</div>
-        <div class="launch-meta">사진 1장 · 치수 4개 · 약 1분</div>
-    </div>""", unsafe_allow_html=True)
-
-    cta_left, cta_mid, cta_right = st.columns([1, 2.15, 1])
-    with cta_mid:
-        st.button(
-            "포장 분석 시작하기",
-            type="primary",
-            use_container_width=True,
-            on_click=go_to_analysis,
-        )
-
-    st.markdown("""<div class="launch-trust">결과는 정답을 대신하지 않습니다. <b>직접 입력한 값과 추정한 값을 구분</b>해 보여주고, 추가 확인이 필요한 조건도 함께 안내합니다.</div>
-    <div class="app-flow">
-        <div class="app-flow-step"><span class="app-flow-n">01</span><div><b>박스 치수 입력</b><span>안쪽 가로·세로·높이 입력</span></div></div>
-        <div class="app-flow-arrow">→</div>
-        <div class="app-flow-step"><span class="app-flow-n">02</span><div><b>사진 촬영</b><span>휴대폰 카메라로 바로 촬영</span></div></div>
-        <div class="app-flow-arrow">→</div>
-        <div class="app-flow-step"><span class="app-flow-n">03</span><div><b>결과 확인</b><span>빈 공간·박스 후보·신뢰도</span></div></div>
-    </div>
-    <div class="home-support">
-        <h3>분석하면 이런 내용을 확인할 수 있어요.</h3>
-        <div class="home-support-grid">
-            <div class="home-support-item"><b>현재 포장 상태</b><span>제품이 차지하는 공간과 남는 빈 공간을 확인합니다.</span></div>
-            <div class="home-support-item"><b>박스 후보 비교</b><span>등록된 규격 중 더 잘 맞을 수 있는 후보를 비교합니다.</span></div>
-            <div class="home-support-item"><b>결과 신뢰도</b><span>측정값과 추정값을 나누고 분석 한계도 함께 알려드립니다.</span></div>
+    st.markdown("""<div class="v99-hero">
+        <div class="v99-copy">
+            <div class="v99-brand"><span class="v99-mark">AI</span><span>AI 포장 분석 · Better Life For Us</span></div>
+            <h1>이 포장,<br>잘 맞는 걸까요?</h1>
+            <div class="v99-lead">사진과 박스 크기를 입력하면 현재 포장의 빈 공간을 확인하고, 더 잘 맞을 수 있는 박스 후보를 비교해드려요.</div>
+            <div class="v99-meta">약 1분 · 설치 없이 바로 사용 · 모바일·PC 지원</div>
+        </div>
+        <div class="v99-preview">
+            <div class="v99-preview-top"><span class="v99-preview-title">분석 결과 미리보기</span><span class="v99-preview-badge">예시 화면</span></div>
+            <div class="v99-preview-photo">포장 사진을 추가하면 분석이 시작됩니다</div>
+            <div class="v99-preview-grid">
+                <div class="v99-preview-item"><small>빈 공간</small><strong>자동 분석</strong></div>
+                <div class="v99-preview-item"><small>박스 후보</small><strong>규격 비교</strong></div>
+                <div class="v99-preview-item"><small>신뢰도</small><strong>함께 표시</strong></div>
+            </div>
         </div>
     </div>""", unsafe_allow_html=True)
 
-    with st.expander("이 도구는 왜 만들었나요?"):
-        st.markdown("""
-박스 규격은 다양하지만, 실제 포장 현장에서는 상품마다 여러 박스를 직접 비교해야 하는 경우가 있습니다.  
-Better Life For Us는 사진과 치수 정보를 바탕으로 **현재 포장 상태를 먼저 확인하고, 다음 선택에 참고할 수 있는 기준을 제공하는 방법**을 실험하고 있습니다.
-""")
+    st.button(
+        "사진으로 분석 시작하기",
+        key="home_start_v99",
+        type="primary",
+        use_container_width=True,
+        on_click=go_to_analysis,
+    )
 
-    with st.expander("어디에서 활용할 수 있나요?"):
-        st.markdown("""
-- **우체국·택배 접수** · 가져온 물건에 맞는 박스를 빠르게 비교해야 할 때
-- **소규모 온라인 판매** · 상품마다 박스를 하나씩 대보는 시간을 줄이고 싶을 때
-- **반품·풀필먼트 작업** · 작업자마다 달라지는 박스 선택 편차를 줄이고 싶을 때
+    st.markdown("""<div class="v99-mini-flow">
+        <span>01 사진 추가</span><span class="arrow">→</span>
+        <span>02 박스 크기 입력</span><span class="arrow">→</span>
+        <span>03 결과 확인</span>
+    </div>""", unsafe_allow_html=True)
 
-현재는 실제 현장에서의 활용 가능성을 검증하고 개선해 나가는 **프로토타입**입니다.
+    st.markdown('<div class="v99-home-detail">', unsafe_allow_html=True)
+    with st.expander("이 서비스는 무엇을 하나요?"):
+        st.markdown("""
+사진에서 박스와 제품이 차지하는 공간을 분석하고, 입력한 박스 크기를 바탕으로 **현재 빈 공간과 비교 가능한 박스 후보**를 보여줍니다.
+
+결과는 박스를 대신 결정하는 정답이 아니라, 포장 선택을 비교할 때 참고할 수 있는 정보입니다.
 """)
+    st.markdown('</div>', unsafe_allow_html=True)
 
 elif page == "지표":
     st.title("포장 지표와 올바른 해석")
@@ -613,7 +910,41 @@ else:
     </div>""", unsafe_allow_html=True)
 
     if stage == 1:
-        st.markdown("""<div class="flow-shell"><h1 class="flow-title">박스 안쪽 치수를 입력해주세요.</h1><p class="flow-copy">가능하면 박스 바깥쪽이 아니라 실제로 제품이 들어가는 안쪽 공간을 기준으로 재주세요.</p></div>""", unsafe_allow_html=True)
+        st.markdown("""<div class="flow-shell"><h1 class="flow-title">포장 사진을 추가해주세요.</h1><p class="flow-copy">먼저 박스와 제품이 한 화면에 보이게 사진을 찍거나 기존 사진을 선택해주세요.</p>
+        <div class="photo-guide"><div>박스 전체가 보이게</div><div>가능하면 위에서</div><div>그림자는 적게</div></div></div>""", unsafe_allow_html=True)
+
+        source = st.radio(
+            "사진 입력 방식",
+            ["카메라로 촬영", "사진에서 선택"],
+            horizontal=True,
+            label_visibility="collapsed",
+            key="flow_photo_source",
+        )
+        if source == "카메라로 촬영":
+            uploaded = st.camera_input("포장 사진 촬영", key="flow_camera")
+        else:
+            uploaded = st.file_uploader("사진 선택", type=["jpg", "jpeg", "png"], key="flow_uploader")
+
+        if uploaded is not None:
+            preview = Image.open(uploaded).convert("RGB")
+            st.image(preview, caption="분석할 사진", use_container_width=True)
+            if st.button("다음 · 박스 크기 입력", type="primary", use_container_width=True):
+                st.session_state["analysis_image_bytes"] = uploaded.getvalue()
+                st.session_state["analysis_stage"] = 2
+                st.rerun()
+        else:
+            st.markdown("<div class='flow-tip'>사진을 추가하면 다음 단계로 넘어갈 수 있어요.</div>", unsafe_allow_html=True)
+
+        st.button(
+            "홈으로 돌아가기",
+            use_container_width=True,
+            on_click=go_to_home,
+        )
+        st.stop()
+
+    if stage == 2:
+        st.markdown("""<div class="flow-shell"><h1 class="flow-title">박스 크기를 알려주세요.</h1><p class="flow-copy">제품이 실제로 들어가는 박스 안쪽을 기준으로 가로·세로·높이를 입력해주세요.</p></div>""", unsafe_allow_html=True)
+
         with st.form("dimension_form"):
             st.markdown("<div class='flow-card'>", unsafe_allow_html=True)
             c1, c2 = st.columns(2)
@@ -623,51 +954,32 @@ else:
             with c2:
                 box_height_mm = st.number_input("높이 (mm)", min_value=1.0, value=float(st.session_state.get("flow_box_height_mm", 150.0)), step=1.0)
                 product_height_mm = st.number_input("제품 높이 · 대략 (mm)", min_value=0.0, value=float(st.session_state.get("flow_product_height_mm", 50.0)), step=1.0)
-            dimensions_confirmed = st.checkbox("직접 재서 입력한 값입니다", value=bool(st.session_state.get("flow_dimensions_confirmed", False)))
-            st.markdown("<div class='flow-tip'><b>Tip</b> · 제품 높이는 정확하지 않아도 시작할 수 있습니다. 직접 재지 않은 값은 결과에서 추정값으로 구분해 표시합니다.</div>", unsafe_allow_html=True)
-            next_step = st.form_submit_button("사진 촬영으로 다음", use_container_width=True)
+
+            dimensions_confirmed = st.checkbox(
+                "직접 재서 입력했어요",
+                value=bool(st.session_state.get("flow_dimensions_confirmed", False)),
+            )
+            st.markdown("<div class='flow-tip'><b>Tip</b> · 제품 높이는 대략 입력해도 됩니다. 직접 재지 않은 값은 결과에서 추정값으로 표시합니다.</div>", unsafe_allow_html=True)
+            next_step = st.form_submit_button("분석 결과 보기", use_container_width=True)
             st.markdown("</div>", unsafe_allow_html=True)
+
         if next_step:
             st.session_state["flow_box_width_mm"] = box_width_mm
             st.session_state["flow_box_length_mm"] = box_length_mm
             st.session_state["flow_box_height_mm"] = box_height_mm
             st.session_state["flow_product_height_mm"] = product_height_mm
             st.session_state["flow_dimensions_confirmed"] = dimensions_confirmed
-            st.session_state["analysis_stage"] = 2
+            st.session_state["analysis_stage"] = 3
             st.rerun()
-        st.button(
-            "홈으로 돌아가기",
-            use_container_width=True,
-            on_click=go_to_home,
-        )
-        st.stop()
 
-    if stage == 2:
-        st.markdown("""<div class="flow-shell"><h1 class="flow-title">포장 사진을 한 장 찍어주세요.</h1><p class="flow-copy">박스 네 모서리와 제품 전체가 한 화면에 보이도록 위에서 촬영하면 분석이 더 안정적입니다.</p>
-        <div class="photo-guide"><div>박스 전체가 보이게</div><div>가능하면 수직으로</div><div>강한 그림자는 피하기</div></div></div>""", unsafe_allow_html=True)
-        source = st.radio("사진 입력 방식", ["카메라로 촬영", "사진에서 선택"], horizontal=True, label_visibility="collapsed", key="flow_photo_source")
-        if source == "카메라로 촬영":
-            uploaded = st.camera_input("포장 사진 촬영", key="flow_camera")
-        else:
-            uploaded = st.file_uploader("사진 선택", type=["jpg", "jpeg", "png"], key="flow_uploader")
-
-        if uploaded is not None:
-            preview = Image.open(uploaded).convert("RGB")
-            st.image(preview, caption="분석할 사진", use_container_width=True)
-            if st.button("이 사진으로 분석하기", type="primary", use_container_width=True):
-                st.session_state["analysis_image_bytes"] = uploaded.getvalue()
-                st.session_state["analysis_stage"] = 3
-                st.rerun()
-        else:
-            st.markdown("<div class='flow-tip'>사진을 추가하면 <b>분석하기</b> 버튼이 나타납니다.</div>", unsafe_allow_html=True)
-
-        if st.button("치수 다시 입력하기", use_container_width=True):
+        if st.button("사진 다시 선택하기", use_container_width=True):
             st.session_state["analysis_stage"] = 1
+            st.session_state.pop("analysis_image_bytes", None)
             st.rerun()
         st.stop()
 
     if "analysis_image_bytes" not in st.session_state:
-        st.session_state["analysis_stage"] = 2
+        st.session_state["analysis_stage"] = 1
         st.rerun()
 
     box_width_mm = float(st.session_state.get("flow_box_width_mm", 330.0))
@@ -678,7 +990,7 @@ else:
     target_utilization = float(st.session_state.get("flow_target_utilization", 0.75))
     image = Image.open(BytesIO(st.session_state["analysis_image_bytes"])).convert("RGB")
 
-    st.markdown("""<div class="flow-shell"><h1 class="flow-title">분석 결과를 확인해보세요.</h1><p class="flow-copy">먼저 핵심 결과를 보고, 필요하면 아래 탭에서 추천 근거와 신뢰도를 자세히 확인할 수 있습니다.</p></div>""", unsafe_allow_html=True)
+    st.markdown("""<div class="flow-shell"><h1 class="flow-title">분석이 끝났어요.</h1><p class="flow-copy">핵심 결과를 먼저 확인하고, 필요한 내용만 아래에서 자세히 볼 수 있습니다.</p></div>""", unsafe_allow_html=True)
     top_a, top_b = st.columns([1, 1])
     with top_a:
         if st.button("새로 분석하기", use_container_width=True):
@@ -743,7 +1055,7 @@ else:
         volume_saving_percent = estimated_material_saving = estimated_carbon_saving = estimated_cost_saving = 0.0
         projected_health = pvi["pvi"]
 
-    section_head("RESULT", "핵심 결과", "지금 포장이 어떤 상태인지 먼저 확인하고, 필요한 경우 아래에서 추천 근거와 신뢰도를 자세히 살펴보세요.")
+    section_head("결과", "한눈에 보기", "현재 포장 상태와 먼저 비교해볼 박스 후보를 확인해보세요.")
     if recommendation:
         result_candidate = f"{recommended_box.company} {recommended_box.code}"
         result_candidate_sub = f"{recommended_box.length}×{recommended_box.width}×{recommended_box.height} mm · 예상 빈 공간 {recommended_void:.1f}%"
@@ -764,6 +1076,7 @@ else:
     level_class = limitation_result["level"]
     st.markdown(f"""<div class="status-line"><span class="status-dot {level_class}"></span><div><b>{consultant['status']} · 우선순위 {consultant['severity']}</b><span>{consultant['summary']}</span></div></div>""", unsafe_allow_html=True)
     st.markdown(f"""<div class="status-line"><span class="status-dot {level_class}"></span><div><b>분석 품질 · {limitation_result['label']}</b><span>{limitation_result['decision']}</span></div></div>""", unsafe_allow_html=True)
+    st.markdown("""<div class="v99-result-note"><b>결과는 정답을 대신하지 않습니다.</b> 직접 입력한 값과 추정한 값을 구분해 보여주고, 실제 포장에 적용하기 전 추가 확인이 필요한 조건도 함께 안내합니다.</div>""", unsafe_allow_html=True)
 
     if presentation_mode:
         st.markdown("### 발표용 핵심 결과")
@@ -777,53 +1090,43 @@ else:
             rb = recommendation['box']
             st.info(f"추천 후보: **{rb.company} {rb.code}** · {rb.length}×{rb.width}×{rb.height} mm · 예상 Void {recommended_void:.1f}%")
     else:
-        tabs = st.tabs(["개요", "추천·개선", "분석 근거", "신뢰도"])
+        tabs = st.tabs(["한눈에 보기", "박스 추천", "근거 · 신뢰도"])
 
         with tabs[0]:
-            st.markdown("#### 현재 포장 상태")
-            g1, g2, g3 = st.columns(3)
-            g1.plotly_chart(gauge(pvi["pvi"], "포장 효율 참고점수"), use_container_width=True)
-            g2.plotly_chart(gauge(100 - planar["void_percent"], "면적 활용률", "%"), use_container_width=True)
-            g3.plotly_chart(gauge(esg["score"], "ESG 참고점수"), use_container_width=True)
+            st.markdown(f"""<div class='v98-summary'><h3>현재 포장을 이렇게 볼 수 있어요.</h3><p>사진에서 제품이 차지한 바닥 면적은 <b>{planar['occupancy_percent']:.1f}%</b>, 면적 기준 빈 공간은 <b>{planar['void_percent']:.1f}%</b>입니다. 입력한 높이를 반영한 체적 기준 빈 공간은 약 <b>{volume['void_percent']:.1f}%</b>로 추정됩니다.</p></div>""", unsafe_allow_html=True)
 
-            with st.expander("결과 해석", expanded=True):
-                st.markdown(f"""
-**사진에서 제품이 차지한 바닥 면적은 약 {planar['occupancy_percent']:.1f}%이며, 면적 기준 빈 공간은 {planar['void_percent']:.1f}%입니다.**  
-입력한 높이를 반영한 체적 기준 빈 공간은 약 **{volume['void_percent']:.1f}%**로 추정됩니다.
-
-- **포장 효율 참고점수 {pvi['pvi']:.0f}점**: 공간 효율, 빈 공간 관리, 보호성, 지속가능성을 합산한 프로젝트 내부 지표입니다.
-- **ESG 참고점수 {esg['score']}점**: 포장재·탄소 추정 로직을 이용한 비교용 값입니다.
-- **측정 신뢰도 {confidence:.1f}%**: 박스 검출, 제품 분할, 원근 보정, 실측 입력 여부를 종합한 참고값입니다.
-
-깨지기 쉬운 제품은 보호 여유가 필요하므로 빈 공간 수치만으로 최종 박스를 결정하지 않습니다.
-""")
-
-            st.markdown("#### 상세 수치")
             v1, v2, v3, v4 = st.columns(4)
             v1.metric("박스 체적", f"{volume['box_volume_mm3']/1000:,.0f} cc")
             v2.metric("제품 추정 체적", f"{volume['product_volume_mm3']/1000:,.0f} cc")
             v3.metric("제품 점유율", f"{volume['occupancy_percent']:.1f}%")
             v4.metric("ESG 참고점수", f"{esg['score']} / {esg['grade']}")
 
-            score_df = pd.DataFrame([{"항목": k, "점수": v, "최대": pvi["max_scores"][k]} for k, v in pvi["scores"].items()])
-            st.bar_chart(score_df.set_index("항목")[["점수", "최대"]])
+            st.markdown("#### 결과 해석")
+            st.markdown(f"""
+- **포장 효율 참고점수 {pvi['pvi']:.0f}점** · 공간 효율, 빈 공간 관리, 보호성, 지속가능성을 함께 본 프로젝트 내부 지표입니다.
+- **측정 신뢰도 {confidence:.1f}%** · 박스 검출, 제품 분할, 원근 보정, 실측 입력 여부를 종합한 참고값입니다.
+- 깨지기 쉬운 제품은 보호 여유가 필요하므로 **빈 공간 수치만으로 최종 박스를 결정하지 않습니다.**
+""")
+
+            with st.expander("점수 구성 보기"):
+                score_df = pd.DataFrame([{"항목": k, "점수": v, "최대": pvi["max_scores"][k]} for k, v in pvi["scores"].items()])
+                st.bar_chart(score_df.set_index("항목")[["점수", "최대"]])
 
         with tabs[1]:
-            st.markdown("#### 추천 후보")
+            st.markdown("#### 먼저 비교해볼 박스")
             if candidates:
                 rows = []
                 for idx, item in enumerate(candidates, 1):
                     b = item["box"]
-                    rows.append({"순위": idx, "후보": f"{b.company} {b.code}", "규격(mm)": f"{b.length}×{b.width}×{b.height}", "활용률(%)": round(item["utilization"]*100,1), "Void(%)": round(item["void_percent"],1), "비용(원)": b.cost, "탄소(kgCO₂e)": b.carbon, "종합점수": item["total_score"]})
+                    rows.append({"순위": idx, "후보": f"{b.company} {b.code}", "규격(mm)": f"{b.length}×{b.width}×{b.height}", "활용률(%)": round(item["utilization"]*100,1), "빈 공간(%)": round(item["void_percent"],1), "비용(원)": b.cost, "탄소(kgCO₂e)": b.carbon, "종합점수": item["total_score"]})
                 df = pd.DataFrame(rows)
                 best = candidates[0]["box"]
-                st.success(f"우선 검토 후보: **{best.company} {best.code}** · {best.length} × {best.width} × {best.height} mm")
+                st.success(f"우선 비교 후보: **{best.company} {best.code}** · {best.length} × {best.width} × {best.height} mm")
                 st.dataframe(df, hide_index=True, use_container_width=True)
-                st.bar_chart(df.set_index("후보")[["종합점수"]])
             else:
-                st.warning("현재 DB에서 제품 체적을 수용하는 표준 박스 후보를 찾지 못했습니다. 맞춤 규격 또는 추가 DB 검토가 필요합니다.")
+                st.warning("현재 DB에서는 제품이 들어갈 수 있는 표준 박스 후보를 찾지 못했습니다. 다른 규격이나 맞춤 포장을 검토해주세요.")
 
-            st.markdown("#### 현재 포장과 후보 적용 비교")
+            st.markdown("#### 현재 포장과 비교")
             before_after = pd.DataFrame([
                 ["체적 빈 공간", f"{volume['void_percent']:.1f}%", f"{recommended_void:.1f}%", f"-{max(volume['void_percent']-recommended_void,0):.1f}%p"],
                 ["포장 효율 참고점수", f"{pvi['pvi']:.0f}점", f"{projected_health:.0f}점", f"+{max(projected_health-pvi['pvi'],0):.0f}점"],
@@ -833,71 +1136,21 @@ else:
                 ["예상 비용", "100 기준", f"{100-estimated_cost_saving:.0f} 기준", f"-{estimated_cost_saving:.0f}%"],
             ], columns=["비교 항목", "현재", "후보 적용", "예상 변화"])
             st.dataframe(before_after, hide_index=True, use_container_width=True)
-            c1, c2, c3 = st.columns(3)
-            c1.metric("포장재 변화", f"-{estimated_material_saving:.0f}%", help="박스 체적 축소율을 이용한 내부 비교용 추정치")
-            c2.metric("탄소 변화", f"-{estimated_carbon_saving:.0f}%", help="공식 LCA가 아닌 비교용 추정치")
-            c3.metric("비용 변화", f"-{estimated_cost_saving:.0f}%", help="실제 구매·운송 단가에 따라 달라질 수 있음")
-            st.caption("절감률은 후보 박스 체적을 기준으로 계산한 시뮬레이션 값입니다. 실제 재질, 골지, 구매 단가, 운송 조건에 따라 달라집니다.")
+            st.caption("절감률은 후보 박스 체적을 이용한 비교용 추정치입니다. 실제 재질, 구매 단가, 운송 조건에 따라 달라질 수 있습니다.")
 
-            st.markdown("#### AI 진단과 다음 행동")
+            st.markdown("#### 다음에 확인할 것")
             st.write(consultant["summary"])
             for action in consultant["actions"]:
                 st.write(f"• {action}")
-            if consultant["savings"]:
-                s = consultant["savings"]
-                st.info(f"{s['box_name']} · {s['size']} · 예상 Void {s['expected_void_percent']}% · 현재 박스 대비 체적 변화 -{s['volume_saving_percent']}%")
-            question = st.selectbox("결과에 대해 확인하고 싶은 항목", ["왜 이 박스를 추천했나요?", "탄소는 왜 줄어드나요?", "정확도를 높이려면 어떻게 하나요?", "제품 보호에는 문제가 없나요?"])
-            answers = {
-                "왜 이 박스를 추천했나요?": "제품 추정 체적을 수용하는 후보 중 목표 활용률, 박스 비용, 탄소 참고값을 함께 비교해 종합점수가 높은 후보를 제시했습니다.",
-                "탄소는 왜 줄어드나요?": "박스가 작아지면 골판지 표면적과 완충재 사용량, 운송 적재 공간이 줄어드는 방향으로 작용할 수 있습니다. 현재 값은 비교용 추정치입니다.",
-                "정확도를 높이려면 어떻게 하나요?": "박스 내부 실측값을 입력하고 카메라를 수직 상단에 두며, 강한 그림자와 반사를 피하고 제품이 겹치지 않게 촬영하세요.",
-                "제품 보호에는 문제가 없나요?": "본 추천은 체적과 효율 중심입니다. 파손 위험, 재질 강도, 완충 설계, 냉장·방수 요구는 별도 검증해야 합니다.",
-            }
-            st.info(answers[question])
 
         with tabs[2]:
-            st.markdown("#### 계산 과정")
-            trace_rows = [
-                ("01", "이미지 품질 확인", f"품질 점수 {quality['score']:.0f}/100 · {quality['message']}"),
-                ("02", "박스 경계 검출", f"검출 신뢰도 {box['confidence']*100:.1f}% · 원근 보정 {'적용' if box['perspective_corrected'] else '미적용'}"),
-                ("03", "제품 영역 분리", f"제품 {total_products}개 · 평균 신뢰도 {(sum(d['confidence'] for d in detections)/len(detections)*100) if detections else 0:.1f}%"),
-                ("04", "면적·체적 환산", f"면적 Void {planar['void_percent']:.1f}% · 체적 Void {volume['void_percent']:.1f}%"),
-                ("05", "점수·후보 비교", f"포장 효율 {pvi['pvi']:.0f}점 · 후보 {len(candidates)}개 비교"),
-            ]
-            for no, title, detail in trace_rows:
-                st.markdown(f"<div class='trace-card'><b>{no} · {title}</b><br><small>{detail}</small></div>", unsafe_allow_html=True)
-
-            st.markdown(f"""<div class='formula-box'>
-<b>면적 제품 점유율</b> = {planar['product_area_px']:,.0f} ÷ {planar['box_area_px']:,.0f} × 100 = <b>{planar['occupancy_percent']:.1f}%</b><br>
-<b>면적 빈 공간</b> = 100 − {planar['occupancy_percent']:.1f} = <b>{planar['void_percent']:.1f}%</b><br>
-<b>체적 제품 점유율</b> = {volume['product_volume_mm3']/1000:,.1f}cc ÷ {volume['box_volume_mm3']/1000:,.1f}cc × 100 = <b>{volume['occupancy_percent']:.1f}%</b><br>
-<b>체적 빈 공간</b> = 100 − {volume['occupancy_percent']:.1f} = <b>{volume['void_percent']:.1f}%</b>
-</div>""", unsafe_allow_html=True)
-
-            st.markdown("#### 이미지 확인")
-            i1, i2, i3 = st.columns(3)
-            i1.image(image, caption="원본", use_container_width=True)
-            i2.image(cv2.cvtColor(box_image, cv2.COLOR_BGR2RGB), caption="박스 경계", use_container_width=True)
-            i3.image(cv2.cvtColor(segmented_image, cv2.COLOR_BGR2RGB), caption="제품 영역", use_container_width=True)
-            st.caption(f"촬영 품질 {quality['score']:.0f}/100 · 밝기 {quality['brightness']} · 선명도 {quality['sharpness']} · {quality['message']}")
-            if detections:
-                with st.expander("검출 데이터 보기"):
-                    st.dataframe(pd.DataFrame(detections), hide_index=True, use_container_width=True)
-
-            st.markdown("#### 3D 근사 모델")
-            aspect = box_width_mm / max(box_length_mm, 1)
-            product_width = min(box_width_mm, np.sqrt(planar["product_area_mm2"] * aspect)) if planar["product_area_mm2"] > 0 else 1
-            product_length = min(box_length_mm, planar["product_area_mm2"] / max(product_width, 1))
-            st.plotly_chart(build_digital_twin(box_width_mm, box_length_mm, box_height_mm, product_width, product_length, product_height_mm), use_container_width=True)
-            st.caption("제품 영역을 동일 면적의 직사각형으로 단순화한 근사 모델이며 실제 형상 복원 결과가 아닙니다.")
-
-        with tabs[3]:
-            st.markdown("#### 분석 신뢰도")
-            r1, r2, r3, r4 = st.columns(4)
-            r1.metric("이미지 품질", f"{limitation_result['quality_score']:.0f}/100")
-            r2.metric("박스 검출", f"{limitation_result['box_confidence']:.1f}%")
-            r3.metric("제품 검출 평균", f"{limitation_result['product_confidence']:.1f}%")
-            r4.metric("종합 측정", f"{confidence:.1f}%")
+            st.markdown("#### 이번 분석을 얼마나 참고할 수 있나요?")
+            st.markdown(f"""<div class='v98-confidence-grid'>
+                <div class='v98-confidence-item'><small>이미지 품질</small><strong>{limitation_result['quality_score']:.0f} / 100</strong></div>
+                <div class='v98-confidence-item'><small>종합 측정 신뢰도</small><strong>{confidence:.1f}%</strong></div>
+                <div class='v98-confidence-item'><small>박스 검출</small><strong>{limitation_result['box_confidence']:.1f}%</strong></div>
+                <div class='v98-confidence-item'><small>제품 검출 평균</small><strong>{limitation_result['product_confidence']:.1f}%</strong></div>
+            </div>""", unsafe_allow_html=True)
 
             if limitation_result["level"] == "red":
                 st.error(f"분석 품질: {limitation_result['label']} — {limitation_result['decision']}")
@@ -906,12 +1159,42 @@ else:
             else:
                 st.success(f"분석 품질: {limitation_result['label']} — {limitation_result['decision']}")
 
-            st.markdown("#### 이번 분석의 제한사항")
+            with st.expander("계산 과정 보기"):
+                trace_rows = [
+                    ("01", "이미지 품질 확인", f"품질 점수 {quality['score']:.0f}/100 · {quality['message']}"),
+                    ("02", "박스 경계 검출", f"검출 신뢰도 {box['confidence']*100:.1f}% · 원근 보정 {'적용' if box['perspective_corrected'] else '미적용'}"),
+                    ("03", "제품 영역 분리", f"제품 {total_products}개 · 평균 신뢰도 {(sum(d['confidence'] for d in detections)/len(detections)*100) if detections else 0:.1f}%"),
+                    ("04", "면적·체적 환산", f"면적 빈 공간 {planar['void_percent']:.1f}% · 체적 빈 공간 {volume['void_percent']:.1f}%"),
+                    ("05", "점수·후보 비교", f"포장 효율 {pvi['pvi']:.0f}점 · 후보 {len(candidates)}개 비교"),
+                ]
+                for no, title, detail in trace_rows:
+                    st.markdown(f"<div class='trace-card'><b>{no} · {title}</b><br><small>{detail}</small></div>", unsafe_allow_html=True)
+                st.markdown(f"""<div class='formula-box'>
+<b>면적 제품 점유율</b> = {planar['product_area_px']:,.0f} ÷ {planar['box_area_px']:,.0f} × 100 = <b>{planar['occupancy_percent']:.1f}%</b><br>
+<b>면적 빈 공간</b> = 100 − {planar['occupancy_percent']:.1f} = <b>{planar['void_percent']:.1f}%</b><br>
+<b>체적 제품 점유율</b> = {volume['product_volume_mm3']/1000:,.1f}cc ÷ {volume['box_volume_mm3']/1000:,.1f}cc × 100 = <b>{volume['occupancy_percent']:.1f}%</b><br>
+<b>체적 빈 공간</b> = 100 − {volume['occupancy_percent']:.1f} = <b>{volume['void_percent']:.1f}%</b>
+</div>""", unsafe_allow_html=True)
+
+            with st.expander("분석 이미지 보기"):
+                i1, i2, i3 = st.columns(3)
+                i1.image(image, caption="원본", use_container_width=True)
+                i2.image(cv2.cvtColor(box_image, cv2.COLOR_BGR2RGB), caption="박스 경계", use_container_width=True)
+                i3.image(cv2.cvtColor(segmented_image, cv2.COLOR_BGR2RGB), caption="제품 영역", use_container_width=True)
+                st.caption(f"촬영 품질 {quality['score']:.0f}/100 · 밝기 {quality['brightness']} · 선명도 {quality['sharpness']} · {quality['message']}")
+
+            with st.expander("3D 근사 모델 보기"):
+                aspect = box_width_mm / max(box_length_mm, 1)
+                product_width = min(box_width_mm, np.sqrt(planar["product_area_mm2"] * aspect)) if planar["product_area_mm2"] > 0 else 1
+                product_length = min(box_length_mm, planar["product_area_mm2"] / max(product_width, 1))
+                st.plotly_chart(build_digital_twin(box_width_mm, box_length_mm, box_height_mm, product_width, product_length, product_height_mm), use_container_width=True)
+                st.caption("제품 영역을 같은 면적의 직사각형으로 단순화한 근사 모델이며 실제 형상 복원 결과는 아닙니다.")
+
+            st.markdown("#### 이번 분석의 한계")
             for item in limitation_result["limitations"]:
                 st.write(f"• {item}")
-
             if limitation_result["actions"]:
-                st.markdown("#### 정확도를 높이는 다음 행동")
+                st.markdown("#### 더 정확하게 분석하려면")
                 for action in limitation_result["actions"]:
                     st.write(f"• {action}")
 
@@ -919,13 +1202,6 @@ else:
                 for check in self_review:
                     st.write(check)
                 st.caption("Self Review는 모델의 정확성을 증명하는 기능이 아니라 입력 조건과 계산 범위를 다시 확인해 과도한 해석을 줄이기 위한 안전 장치입니다.")
-
-            st.markdown("#### 적용 범위")
-            st.markdown("""
-- **사용 가능:** 포장 후보 비교, 빈 공간 개선 아이디어 탐색, 교육·캠페인·사전 검토
-- **추가 확인 필요:** 실제 박스 규격 확정, 제품 보호 구조 설계, 비용·탄소 변화량 확정
-- **대체 불가:** 법적 적합성 판단, 공인 시험, 낙하·진동·압축 시험, 공식 LCA·환경 인증
-""")
 
     report_sections = {
         "핵심 분석 요약": {
@@ -967,7 +1243,7 @@ else:
     st.divider()
     col_report, col_cert = st.columns(2)
     with col_report:
-        st.download_button("투명성 보고서 다운로드", pdf_bytes, "AI_포장분석_투명성보고서_V9_6.pdf", "application/pdf", use_container_width=True)
+        st.download_button("투명성 보고서 다운로드", pdf_bytes, "AI_포장분석_투명성보고서_V9_8.pdf", "application/pdf", use_container_width=True)
     certificate_bytes = build_analysis_certificate({
         "analysis_date": datetime.now().strftime("%Y-%m-%d %H:%M"),
         "health_score": f"{pvi['pvi']:.0f}/100",
@@ -982,7 +1258,7 @@ else:
         "summary": consultant["summary"],
     })
     with col_cert:
-        st.download_button("분석 결과 요약서 다운로드", certificate_bytes, "AI_포장분석_결과요약서_V9_6.pdf", "application/pdf", use_container_width=True)
+        st.download_button("분석 결과 요약서 다운로드", certificate_bytes, "AI_포장분석_결과요약서_V9_8.pdf", "application/pdf", use_container_width=True)
 
 
-st.markdown("""<div class="footer-brand"><strong>Better Life For Us · V9.7</strong><span>AI Packaging Intelligence · 사진과 치수로 포장 상태를 확인하고 다음 선택에 참고할 수 있는 근거를 보여드립니다.</span></div>""", unsafe_allow_html=True)
+st.markdown("""<div class="footer-brand"><strong>Better Life For Us · V9.9</strong><span>AI Packaging Intelligence · 사진과 치수로 포장 상태를 확인하고 다음 선택에 참고할 수 있는 근거를 보여드립니다.</span></div>""", unsafe_allow_html=True)
