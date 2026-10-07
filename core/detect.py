@@ -149,7 +149,7 @@ def detect_products(
         components = [
             component
             for component in components
-            if component[0] >= largest_area * 0.12
+            if component[0] >= largest_area * 0.25
         ]
     
 
