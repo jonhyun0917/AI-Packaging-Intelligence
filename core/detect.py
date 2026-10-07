@@ -552,7 +552,7 @@ def detect_products(
         result_crop,
         visual_void_mask,
         (0, 165, 255),
-        alpha=0.22,
+        alpha=0.35,
     )
 
 
