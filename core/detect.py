@@ -43,6 +43,20 @@ def _edge_mask(crop: np.ndarray) -> np.ndarray:
     return filled
 
 
+def _apply_color_overlay(
+    image: np.ndarray,
+    mask: np.ndarray,
+    color: Tuple[int, int, int],
+    alpha: float = 0.3,
+) -> np.ndarray:
+    if cv2.countNonZero(mask) == 0:
+        return image
+
+    overlay = image.copy()
+    overlay[mask > 0] = color
+    return cv2.addWeighted(overlay, alpha, image, 1.0 - alpha, 0)
+
+
 def detect_products(
     image: Any,
     box: Optional[Dict[str, Any]] = None,
@@ -52,12 +66,10 @@ def detect_products(
         raise ValueError("RGB 이미지가 필요합니다.")
 
     original = cv2.cvtColor(rgb[:, :, :3], cv2.COLOR_RGB2BGR)
-    result = original.copy()
 
     use_warped = bool(box and isinstance(box.get("warped_image"), np.ndarray))
     if use_warped:
         crop = box["warped_image"].copy()
-        result = crop.copy()
         offset_x = offset_y = 0
     else:
         h, w = original.shape[:2]
@@ -131,23 +143,14 @@ def detect_products(
 
     components.sort(reverse=True)
 
+    contour_cache = []
+
     for idx, (area, label, x, y, w, h, confidence) in enumerate(components, start=1):
         cmask = np.where(labels == label, 255, 0).astype(np.uint8)
         union_mask = cv2.bitwise_or(union_mask, cmask)
 
         contours, _ = cv2.findContours(cmask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
-        cv2.drawContours(result, contours, -1, (0, 255, 0), 3)
-        cv2.rectangle(result, (x, y), (x + w, y + h), (255, 180, 0), 2)
-        cv2.putText(
-            result,
-            f"product {idx} {confidence:.2f}",
-            (x, max(24, y - 7)),
-            cv2.FONT_HERSHEY_SIMPLEX,
-            0.62,
-            (0, 255, 0),
-            2,
-            cv2.LINE_AA,
-        )
+        contour_cache.append((idx, contours, x, y, w, h, confidence))
 
         detections.append(
             {
@@ -161,4 +164,80 @@ def detect_products(
         )
 
     product_area = int(cv2.countNonZero(union_mask))
+
+    # 박스 내부 표시 영역(가장자리 제외)
+    inner_mask = np.ones((ch, cw), dtype=np.uint8) * 255
+    inner_mask[:margin, :] = 0
+    inner_mask[-margin:, :] = 0
+    inner_mask[:, :margin] = 0
+    inner_mask[:, -margin:] = 0
+
+    # 빈공간 = 박스 내부 - 제품영역
+    void_mask = cv2.bitwise_and(inner_mask, cv2.bitwise_not(union_mask))
+
+    # 시각화용 결과 이미지
+    result_crop = crop.copy()
+
+    # 1) 빈공간 먼저 주황색으로
+    result_crop = _apply_color_overlay(
+        result_crop,
+        void_mask,
+        (0, 165, 255),   # orange (BGR)
+        alpha=0.28,
+    )
+
+    # 2) 제품영역은 초록색으로
+    result_crop = _apply_color_overlay(
+        result_crop,
+        union_mask,
+        (60, 180, 75),   # green (BGR)
+        alpha=0.35,
+    )
+
+    # 3) 경계선/텍스트는 마지막에 위로 그리기
+    for idx, contours, x, y, w, h, confidence in contour_cache:
+        cv2.drawContours(result_crop, contours, -1, (0, 120, 0), 2)
+        cv2.rectangle(result_crop, (x, y), (x + w, y + h), (255, 180, 0), 2)
+        cv2.putText(
+            result_crop,
+            f"product {idx} {confidence:.2f}",
+            (x, max(24, y - 7)),
+            cv2.FONT_HERSHEY_SIMPLEX,
+            0.62,
+            (0, 110, 0),
+            2,
+            cv2.LINE_AA,
+        )
+
+    # 범례
+    cv2.rectangle(result_crop, (12, 12), (32, 28), (60, 180, 75), -1)
+    cv2.putText(
+        result_crop,
+        "Product",
+        (38, 26),
+        cv2.FONT_HERSHEY_SIMPLEX,
+        0.5,
+        (40, 40, 40),
+        1,
+        cv2.LINE_AA,
+    )
+
+    cv2.rectangle(result_crop, (12, 36), (32, 52), (0, 165, 255), -1)
+    cv2.putText(
+        result_crop,
+        "Void Space",
+        (38, 50),
+        cv2.FONT_HERSHEY_SIMPLEX,
+        0.5,
+        (40, 40, 40),
+        1,
+        cv2.LINE_AA,
+    )
+
+    if use_warped:
+        result = result_crop
+    else:
+        result = original.copy()
+        result[y1:y2, x1:x2] = result_crop
+
     return detections, result, product_area, len(detections)
