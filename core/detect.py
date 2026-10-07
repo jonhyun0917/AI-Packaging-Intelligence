@@ -128,7 +128,7 @@ def detect_products(
             x + w >= cw - margin,
             y + h >= ch - margin,
         ])
-        if touches >= 3 and area > crop_area * 0.20:
+        if touches >= 1:
             continue
 
         area_ratio = area / crop_area
