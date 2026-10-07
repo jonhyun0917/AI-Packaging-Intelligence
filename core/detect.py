@@ -142,6 +142,16 @@ def detect_products(
         components.append((area, label, x, y, w, h, float(confidence)))
 
     components.sort(reverse=True)
+    # 가장 큰 제품 영역에 비해 지나치게 작은 영역은 제외
+    if components:
+        largest_area = components[0][0]
+
+        components = [
+            component
+            for component in components
+            if component[0] >= largest_area * 0.12
+        ]
+    
 
     contour_cache = []
 
