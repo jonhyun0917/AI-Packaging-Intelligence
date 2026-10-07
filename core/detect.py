@@ -551,8 +551,8 @@ def detect_products(
     result_crop = _apply_color_overlay(
         result_crop,
         visual_void_mask,
-        (0, 165, 255),
-        alpha=0.35,
+        (255, 120, 60),
+        alpha=0.30,
     )
 
 
