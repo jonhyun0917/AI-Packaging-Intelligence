@@ -4,7 +4,7 @@ import base64
 import cv2
 from fastapi import FastAPI, File, HTTPException, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
-from PIL import Image
+from PIL import Image, ImageOps
 
 from analysis.pvi import calculate_pvi
 from core.box_detector import detect_box
@@ -60,7 +60,9 @@ async def analyze(image: UploadFile = File(...)):
     raw = await image.read()
 
     try:
-        pil_image = Image.open(BytesIO(raw)).convert("RGB")
+        pil_image = ImageOps.exif_transpose(
+            Image.open(BytesIO(raw))
+        ).convert("RGB")
 
     except Exception:
         raise HTTPException(
