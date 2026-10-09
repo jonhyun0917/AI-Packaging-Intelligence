@@ -576,9 +576,67 @@ def detect_products(
     # 11. 원본 이미지와 합치기
     # --------------------------------------------------
 
-    if use_warped:
+    if use_warped and box is not None:
 
-        result = result_crop
+        perspective_matrix = np.asarray(
+            box["perspective_matrix"],
+            dtype=np.float32,
+        )
+
+        inverse_matrix = np.linalg.inv(
+            perspective_matrix
+        )
+
+        original_h, original_w = original.shape[:2]
+
+
+        # 제품 영역을 원본 사진 좌표로 복원
+        visual_mask_original = cv2.warpPerspective(
+            visual_mask,
+            inverse_matrix,
+            (original_w, original_h),
+            flags=cv2.INTER_NEAREST,
+        )
+
+
+        # 예상 빈공간도 원본 사진 좌표로 복원
+        void_mask_original = cv2.warpPerspective(
+            visual_void_mask,
+            inverse_matrix,
+            (original_w, original_h),
+            flags=cv2.INTER_NEAREST,
+        )
+
+
+        # 원본 사진 그대로 시작
+        result = original.copy()
+
+
+        # 빈공간: 파란 반투명
+        result = _apply_color_overlay(
+            result,
+            void_mask_original,
+            (255, 120, 60),
+            alpha=0.30,
+        )
+
+
+        # 제품: 초록 윤곽선
+        original_contours, _ = cv2.findContours(
+            visual_mask_original,
+            cv2.RETR_EXTERNAL,
+            cv2.CHAIN_APPROX_SIMPLE,
+        )
+
+        if original_contours:
+            cv2.drawContours(
+                result,
+                original_contours,
+                -1,
+                (36, 110, 75),
+                3,
+            )
+
 
     else:
 
