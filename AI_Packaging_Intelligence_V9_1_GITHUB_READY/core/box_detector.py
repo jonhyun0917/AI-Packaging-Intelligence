@@ -131,7 +131,7 @@ def detect_box(image: Any) -> Tuple[np.ndarray, int, Dict[str, Any]]:
         "corners": points.tolist(),
         "confidence": round(float(confidence), 3),
         "auto_detected": auto_detected,
-        "perspective_corrected": True,
+        "perspective_corrected": bool(auto_detected),
         "warped_image": warped,
         "perspective_matrix": matrix,
         "warped_width": int(warped.shape[1]),
