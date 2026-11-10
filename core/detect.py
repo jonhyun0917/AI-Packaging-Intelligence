@@ -199,7 +199,7 @@ def detect_products(
 
     margin = max(
         2,
-        int(min(ch, cw) * 0.015),
+        int(min(ch, cw) * 0.025),
     )
 
     mask[:margin, :] = 0
