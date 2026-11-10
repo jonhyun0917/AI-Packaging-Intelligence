@@ -76,7 +76,11 @@ def detect_products(
     ch, cw = crop.shape[:2]
     crop_area = ch * cw
 
-    mask = cv2.bitwise_or(_background_mask(crop), _edge_mask(crop))
+    
+    background_mask = _background_mask(crop)
+    edge_mask = _edge_mask(crop)
+    mask = cv2.bitwise_or(background_mask, edge_mask)
+
 
     k = max(3, int(min(ch, cw) * 0.008))
     if k % 2 == 0:
