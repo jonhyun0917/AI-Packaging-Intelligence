@@ -89,7 +89,7 @@ def detect_products(
     mask = cv2.morphologyEx(mask, cv2.MORPH_OPEN, kernel, iterations=1)
     mask = cv2.morphologyEx(mask, cv2.MORPH_CLOSE, kernel, iterations=2)
 
-    margin = max(2, int(min(ch, cw) * 0.015))
+    margin = max(2, int(min(ch, cw) * 0.025))
     mask[:margin, :] = 0
     mask[-margin:, :] = 0
     mask[:, :margin] = 0
