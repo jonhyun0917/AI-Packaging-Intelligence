@@ -1,4 +1,5 @@
 
+from core.product_counter import count_products
 from pathlib import Path
 import cv2
 import numpy as np
@@ -201,7 +202,7 @@ def analyze_image(image_path, output_path):
         if cv2.contourArea(contour) >= min_product_area
     ]
 
-    product_count = len(valid_contours)
+    product_count = count_products(image)
 
     print("검출된 제품 후보 개수:", product_count)
 
