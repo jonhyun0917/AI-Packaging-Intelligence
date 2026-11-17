@@ -99,7 +99,6 @@ async def analyze_experimental(
             "void_percent": result["void_percent"],
             "confidence": result.get("confidence", 0.0),
             "confidence_label": "높음" if result.get("confidence", 0.0) >= 85 else ("보통" if result.get("confidence", 0.0) >= 65 else "낮음"),
-,
             "quality_score": 0,
             "quality_message": "실험용 분석",
             "box_confidence": 0.0,
