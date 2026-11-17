@@ -228,6 +228,51 @@ def analyze_image(image_path, output_path):
     void = 100 - occupancy
 
     # ====================================
+    # 6-2. 영상 분석 품질 기반 신뢰도(Confidence) 산출
+    # ====================================
+    # 1) 박스 4면 경계(left, right, top, bottom) 엣지 피크 선명도
+    edge_scores = []
+    for prof, idx, s, e in [
+        (x_profile, left, 0.17, 0.38),
+        (x_profile, right, 0.62, 0.83),
+        (y_profile, top, 0.23, 0.43),
+        (y_profile, bottom, 0.57, 0.84),
+    ]:
+        reg = prof[int(len(prof) * s):int(len(prof) * e)]
+        mean_val = float(np.mean(reg)) if reg.size > 0 else 0.0
+        peak_val = float(prof[idx])
+        ratio = peak_val / (mean_val + 1e-5)
+        edge_scores.append(min(1.0, max(0.0, (ratio - 1.0) / 2.5)))
+    edge_confidence = sum(edge_scores) / 4.0
+
+    # 2) 검출된 제품이 박스 바닥 안쪽에 온전히 포함된 비율
+    total_product_px = int(cv2.countNonZero(product_mask))
+    containment_ratio = (
+        product_area / total_product_px if total_product_px > 0 else 0.0
+    )
+
+    # 3) 제품 윤곽선 사각형 정합도 (반사광/그림자 손실 여부)
+    if valid_contours:
+        rect_ratios = []
+        for c in valid_contours:
+            _, _, cw, ch = cv2.boundingRect(c)
+            if cw * ch > 0:
+                rect_ratios.append(cv2.contourArea(c) / float(cw * ch))
+        shape_confidence = sum(rect_ratios) / len(rect_ratios)
+    else:
+        shape_confidence = 0.0
+
+    if product_count <= 0 or product_area == 0:
+        confidence = 0.0
+    else:
+        raw_conf = (
+            edge_confidence * 0.45
+            + containment_ratio * 0.35
+            + shape_confidence * 0.20
+        ) * 100.0
+        confidence = round(min(98.5, max(50.0, raw_conf)), 1)
+
+    # ====================================
     # 7. 결과 이미지 생성
     # ====================================
 
@@ -296,6 +341,7 @@ def analyze_image(image_path, output_path):
         "void_percent": round(
             void, 1
         ),
+        "confidence": confidence,
         "product_area_px": product_area,
         "floor_area_px": floor_area,
         "floor": {
