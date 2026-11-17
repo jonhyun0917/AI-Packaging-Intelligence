@@ -6,12 +6,20 @@ import base64
 
 import cv2
 from fastapi import FastAPI, File, HTTPException, UploadFile
+from fastapi.middleware.cors import CORSMiddleware
 from PIL import Image, ImageOps
 
 from core.boxfit_experiment import analyze_image
 
 
 app = FastAPI(title="BoxFit Experimental API")
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=False,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 @app.get("/")
