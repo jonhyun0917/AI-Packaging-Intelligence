@@ -515,6 +515,16 @@ def detect_products(
         )
 
 
+    visual_area = int(cv2.countNonZero(visual_mask))
+
+    print(
+        f"[BoxFit MASK CHECK] "
+        f"calculation={product_area}, "
+        f"visual={visual_area}, "
+        f"difference={product_area - visual_area}",
+        flush=True,
+    )
+
     # ==================================================
     # 8. 예상 빈공간 시각화
     # ==================================================

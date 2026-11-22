@@ -1,3 +1,4 @@
+from __future__ import annotations
 
 from io import BytesIO
 from pathlib import Path
@@ -7,10 +8,11 @@ import base64
 import cv2
 from fastapi import FastAPI, File, HTTPException, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
+import numpy as np
 from PIL import Image, ImageOps
 
 from core.boxfit_experiment import analyze_image
-
+from core.measurement_engine import measure_with_reference_card
 
 app = FastAPI(title="BoxFit Experimental API")
 app.add_middleware(
@@ -20,6 +22,28 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+
+def _extract_bboxes_from_result(result: dict):
+    if not isinstance(result, dict):
+        return None, None
+
+    box_bbox = result.get("box_bbox") or result.get("outer_box_bbox")
+    product_bboxes = (
+        result.get("product_bboxes")
+        or result.get("products_bbox")
+        or result.get("boxes")
+    )
+
+    if isinstance(product_bboxes, list) and product_bboxes and isinstance(product_bboxes[0], dict):
+        extracted = []
+        for item in product_bboxes:
+            b = item.get("bbox") or item.get("xyxy")
+            if b and len(b) == 4:
+                extracted.append(tuple(b))
+        product_bboxes = extracted or None
+
+    return (tuple(box_bbox) if box_bbox and len(box_bbox) == 4 else None), product_bboxes
 
 
 @app.get("/")
@@ -52,6 +76,8 @@ async def analyze_experimental(
             detail="이미지를 읽을 수 없습니다."
         )
 
+    img_bgr = cv2.cvtColor(np.array(pil_image), cv2.COLOR_RGB2BGR)
+
     with TemporaryDirectory() as directory:
         input_path = Path(directory) / "input.png"
         output_path = Path(directory) / "result.png"
@@ -68,6 +94,21 @@ async def analyze_experimental(
                 status_code=422,
                 detail=f"실험 분석 실패: {type(e).__name__}"
             )
+
+        box_bbox, product_bboxes = _extract_bboxes_from_result(result)
+        try:
+            size_measurement = measure_with_reference_card(
+                img_bgr=img_bgr,
+                box_bbox_px=box_bbox,
+                product_bboxes_px=product_bboxes,
+            )
+        except Exception:
+            size_measurement = {
+                "reference_detected": False,
+                "mm_per_px": None,
+                "box_size": None,
+                "products_size": [],
+            }
 
         result_image = cv2.imread(str(output_path))
 
@@ -107,5 +148,6 @@ async def analyze_experimental(
             "message": "파란색 제품을 대상으로 한 실험 분석 결과입니다.",
             "result_image_base64": image_base64,
             "visualization_message": "초록색은 추정 바닥 경계, 분홍색은 검출된 제품 영역입니다.",
-            "disclaimer": "사진 기반 면적 참고값이며 실제 부피 또는 법령상 포장공간비율이 아닙니다."
+            "disclaimer": "사진 기반 면적 참고값이며 실제 부피 또는 법령상 포장공간비율이 아닙니다.",
+            "size_measurement": size_measurement,
         }
